@@ -11,9 +11,10 @@ class Account:
         Account.number += 1
 
     def deposit(self, amount):
+        positive_amount = (amount*-1) if amount < 0 else amount
         if self.owner.logged_in:
-            self.balance += amount
-            return f"${amount} deposited successfully"
+            self.balance += positive_amount
+            return f"${positive_amount} deposited successfully"
         return f"User not authenticated"
     
     def check_balance(self):
@@ -23,9 +24,22 @@ class Account:
         
 
     def transfer(self, amount, reciever_account):
+        if not isinstance(reciever_account, Account):
+            return "Account does not exist"
         if self.owner.logged_in:
-            if self.balance >= amount:
-                reciever_account.balance += amount
-                self.balance -= amount
-                return f"Transfer of ${amount} was successful!"
+            positive_amount = (amount*-1) if amount < 0 else amount
+            if self.balance >= positive_amount:
+                reciever_account.balance += positive_amount
+                self.balance -= positive_amount
+                return f"Transfer of ${positive_amount} was successful!"
         return f"User not authenticated"
+    
+     
+    def withdraw(self, amount):
+        positive_amount = (amount*-1) if amount < 0 else amount
+        if self.owner.logged_in and positive_amount > 0:
+            if self.balance >= positive_amount:
+                self.balance -= positive_amount
+                return f"Withdraw of ${positive_amount} was successful!"
+            else:
+                return "Insufficient Balance"

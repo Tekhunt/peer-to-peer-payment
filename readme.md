@@ -15,4 +15,4 @@ For this problem we want to write a small piece of the backend for a peer to pee
 - User A transfers 25 dollars from their account
 - User A checks their balance and has 0 dollars
 
-NB: Ensure pytest is install before running tests
+NB: Ensure pytest is installed before running tests

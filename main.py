@@ -24,3 +24,9 @@ print(account2.check_balance())
 print(account1.transfer(25, account2))
 print(account1.check_balance())
 print(account2.check_balance())
+print(account2.withdraw(-20))
+print(account2.check_balance())
+print(account1.withdraw(-20))
+# Should print insufficient balance
+
+
